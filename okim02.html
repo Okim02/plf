@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+
+	<script type="text/javascript">
+		
+		function isPalindrome(word) {
+    // Remove non-alphanumeric characters and convert to lowercase
+    let cleanWord = word.replace(/[^A-Za-z0-9]/g, '').toLowerCase();
+    // Compare the word with its reverse
+    return cleanWord === cleanWord.split('').reverse().join('');
+}
+
+function palindromeChecker() {
+    let word;
+    let anotherCheck = true;
+
+    console.log("Welcome to Palindrome Checker");
+
+    while (anotherCheck) {
+        word = prompt("Please enter any word or phrase:");
+        
+        // Predefined list of words
+        const predefinedWords = ["dad", "mom", "noon", "madam", "radar", 
+                                 "level", "deed", "nun", "kayak", 
+                                 "civic", "deified", "refer"];
+
+        if (predefinedWords.includes(word.toLowerCase())) {
+            console.log(`${word} is a valid predefined word.`);
+        } else if (isPalindrome(word)) {
+            console.log(`${word} is a palindrome.`);
+        } else {
+            console.log(`${word} is not a palindrome.`);
+        }
+
+        // Ask user if they want to check another word
+        let userResponse = prompt("Do you want to check another word? (Yes/No)").toLowerCase();
+        anotherCheck = (userResponse === 'yes');
+    }
+
+    console.log("Thank you for using the program");
+}
+
+// Run the palindrome checker
+palindromeChecker();
+
+		
+	</script>
+
+</body>
+</html>
