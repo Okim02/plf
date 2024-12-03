@@ -9,46 +9,64 @@
 
 	<script type="text/javascript">
 		
-		function isPalindrome(word) {
-    // Remove non-alphanumeric characters and convert to lowercase
-    let cleanWord = word.replace(/[^A-Za-z0-9]/g, '').toLowerCase();
-    // Compare the word with its reverse
+	// Function to greet the user
+function housekeeping() {
+    alert("Welcome to the Palindrome Checker!");
+}
+
+// Function to check if the input word is a palindrome
+function isPalindrome(word) {
+    // Remove spaces and convert to lowercase for uniformity
+    let cleanWord = word.replace(/\s+/g, '').toLowerCase();
+    // Check if the word is the same forward and backward
     return cleanWord === cleanWord.split('').reverse().join('');
 }
 
-function palindromeChecker() {
-    let word;
-    let anotherCheck = true;
+// Function to prompt user for word input and check palindrome
+function detailLoop() {
+    let word = prompt("Please enter a word or phrase (or type 'exit' to quit):");
 
-    console.log("Welcome to Palindrome Checker");
-
-    while (anotherCheck) {
-        word = prompt("Please enter any word or phrase:");
-        
-        // Predefined list of words
-        const predefinedWords = ["dad", "mom", "noon", "madam", "radar", 
-                                 "level", "deed", "nun", "kayak", 
-                                 "civic", "deified", "refer"];
-
-        if (predefinedWords.includes(word.toLowerCase())) {
-            console.log(`${word} is a valid predefined word.`);
-        } else if (isPalindrome(word)) {
-            console.log(`${word} is a palindrome.`);
-        } else {
-            console.log(`${word} is not a palindrome.`);
-        }
-
-        // Ask user if they want to check another word
-        let userResponse = prompt("Do you want to check another word? (Yes/No)").toLowerCase();
-        anotherCheck = (userResponse === 'yes');
+    // Exit condition
+    if (word === null || word.toLowerCase() === 'exit') {
+        return;
     }
 
-    console.log("Thank you for using the program");
+    // Check if input is empty
+    if (word.trim() === "") {
+        alert("Input cannot be empty. Please try again.");
+        detailLoop(); // Recursively ask for a valid input
+        return;
+    }
+
+    // Check if the word is a palindrome
+    if (isPalindrome(word)) {
+        alert(`"${word}" is a palindrome.`);
+    } else {
+        alert(`"${word}" is not a palindrome.`);
+    }
+
+    // Ask if user wants to check another word
+    let condition = prompt("Do you want to check another word? (Yes/No)");
+
+    if (condition && condition.toLowerCase() === "yes") {
+        detailLoop(); // Recursively call the function to check another word
+    }
 }
 
-// Run the palindrome checker
-palindromeChecker();
+// Function to end the program
+function endOfFile() {
+    alert("Thank you for using the Palindrome Checker. Goodbye!");
+}
 
+// Main function to run the program
+function main() {
+    housekeeping();
+    detailLoop();
+    endOfFile();
+}
+
+// Call the main function to start the program
+main();
 		
 	</script>
 
